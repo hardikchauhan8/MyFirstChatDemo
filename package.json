@@ -13,5 +13,13 @@
     "morgan": "^1.9.0",
     "nodemon": "^1.13.2",
     "socket.io": "^2.0.4"
+  },
+  "scripts": {
+    "prestart": "mongod --dbpath data --fork --logpath /dev/null",
+    "start": "node ./bin/www",
+    "poststop": "mongo admin --eval 'db.shutdownServer()' > /dev/null",
+    "pretest": "mongod --dbpath data --fork --logpath /dev/null",
+    "test": "mocha test",
+    "posttest": "mongo admin --eval 'db.shutdownServer()' > /dev/null"
   }
 }

@@ -24,18 +24,7 @@ var config = {
   var greetingSchema = mongoose.Schema({
     sentence: String
   }); 
-  var Greeting= mongoose.model('Greeting', greetingSchema);
-
   db = mongoose.connect(dbPath);
 
-  mongoose.connection.once('open', function() {
-    var greeting;
-    Greeting.find( function(err, greetings){
-     if( !greetings ){     
-        greeting = new Greeting({ sentence: standardGreeting }); 
-        greeting.save();
-      } 
-    }); 
-  });
   app.set('superSecret', config.secret);
   
