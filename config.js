@@ -7,7 +7,7 @@ var db;
 var config = {
     "USER"    : "",           
     "PASS"    : "",
-    "HOST"    : "ec2-35-154-211-85.ap-south-1.compute.amazonaws.com",  
+    "HOST"    : "localhost",  
     "PORT"    : "27017", 
     "DATABASE" : "MyChatDemoDB",
     "secret" : "nightfox"
@@ -25,6 +25,5 @@ var config = {
     sentence: String
   }); 
   db = mongoose.connect(dbPath);
-
   app.set('superSecret', config.secret);
   
