@@ -6,21 +6,17 @@ var express = require('express');
 
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var mongoose = require('mongoose');
 var apiRoutes = express.Router();
 var jwt = require('jsonwebtoken');
 var config = require('./config');
 
 var port = process.env.PORT || 8080;
-mongoose.connect(config.database);
-app.set('superSecret', config.secret);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
 var User = require('./models/users');
-
-
 io.on('connection', function(socket){
   console.log('a user connected');
 });
