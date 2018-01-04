@@ -7,7 +7,7 @@ var db;
 var config = {
     "USER"    : "",           
     "PASS"    : "",
-    "HOST"    : "localhost",  
+    "HOST"    : "ec2-35-154-211-85.ap-south-1.compute.amazonaws.com",  
     "PORT"    : "27017", 
     "DATABASE" : "MyChatDemoDB",
     "secret" : "nightfox"
