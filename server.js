@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var apiRoutes = express.Router();
 var jwt = require('jsonwebtoken');
-// var config = require('./config');
+var config = require('./config');
 
 var port = process.env.PORT || 8080;
 
@@ -16,10 +16,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// var User = require('./models/users');
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-// });
+var User = require('./models/users');
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 
 app.get('/', function (req, res) {
@@ -31,36 +31,36 @@ apiRoutes.get('/', function (req, res) {
 });
 
 // route to return all users (GET http://localhost:8080/api/users)
-// apiRoutes.get('/users', function (req, res) {
-//     User.find({}, function (err, users) {
-//         if (users.length <= 0) {
-//             res.json({ "message": "No user found" });
-//         } else {
-//             res.json(users);
-//         }
+apiRoutes.get('/users', function (req, res) {
+    User.find({}, function (err, users) {
+        if (users.length <= 0) {
+            res.json({ "message": "No user found" });
+        } else {
+            res.json(users);
+        }
 
-//     });
-// });
+    });
+});
 
-// // route to return all users (GET http://localhost:8080/api/users)
-// apiRoutes.put('/users', function (req, res) {
+// route to return all users (GET http://localhost:8080/api/users)
+apiRoutes.put('/users', function (req, res) {
 
-//     console.log(JSON.stringify(req.body));
-//     // create a sample user
-//     var newUser = new User({
-//         name: req.body.name,
-//         password: req.body.password,
-//         admin: req.body.isadmin
-//     });
+    console.log(JSON.stringify(req.body));
+    // create a sample user
+    var newUser = new User({
+        name: req.body.name,
+        password: req.body.password,
+        admin: req.body.isadmin
+    });
 
-//     // save the sample user
-//     newUser.save(function (err) {
-//         if (err) throw err;
+    // save the sample user
+    newUser.save(function (err) {
+        if (err) throw err;
 
-//         console.log('User saved successfully');
-//         res.json({ success: true });
-//     });
-// });
+        console.log('User saved successfully');
+        res.json({ success: true });
+    });
+});
 
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);
