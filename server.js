@@ -3,12 +3,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 const api = require('./routes/apiRoutes');
-var jwt = require('jsonwebtoken');
 var config = require('./config');
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // apply the routes to our application with the prefix /api
